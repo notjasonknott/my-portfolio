@@ -1,7 +1,10 @@
 <template>
   <header id="header">
     <nav id="main-navigation" class="main-nav">
-    <div v-on:scroll="handleScroll" class="logo-wrapper">
+    <div 
+    v-on:scroll="handleScroll" 
+    :class="{'small': scrolled}" 
+    class="logo-wrapper">
         <p v-if="scrolled" class="logo-text">JASON KNOTT</p>
         <img v-else alt="Jason logo" src="@/assets/logo.svg">
     </div>
@@ -9,6 +12,9 @@
       <div class="nav-links">
         <router-link to="/">Home</router-link>
         <router-link to="/about">About</router-link>
+        <router-link to="/work">Work</router-link>
+        <router-link to="/vlogs">Vlogs</router-link>
+
       </div>
     </div>
     </nav>
@@ -26,32 +32,25 @@ export default {
   methods: {
     handleScroll() {
       this.scrolled = window.pageYOffset > 38;
-      let nav = document.querySelector('.logo-wrapper');
-      if(this.scrolled) {
-        nav.classList = 'logo-wrapper small'
-      } else {
-        nav.classList = 'logo-wrapper';
-      }
-    } 
+    }
   },
-  created () {
-    window.addEventListener('scroll', this.handleScroll);
+  created() {
+    window.addEventListener("scroll", this.handleScroll);
   },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll);
+  destroyed() {
+    window.removeEventListener("scroll", this.handleScroll);
   }
 };
 </script>
 
 <style lang="scss" scoped>
-
 .logo-wrapper {
   width: 100%;
   height: 60px;
   margin: 40px 0;
-  transition: height .1s ease-in-out;
+  transition: height 0.1s ease-in-out;
 
-  &>img {
+  & > img {
     height: 100%;
     width: auto;
   }
@@ -98,19 +97,18 @@ export default {
 .nav-links {
   margin-top: auto;
 
-  >* {
+  > * {
     margin: 1rem 1rem 0 1rem;
   }
   a {
-  font-weight: light;
-  color: #000;
-  text-decoration: none;
-  display: inline-block;
-  text-transform: uppercase;
+    font-weight: light;
+    color: #000;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
     &.router-link-exact-active {
       color: #a59275;
     }
   }
 }
-
 </style>
