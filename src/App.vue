@@ -62,18 +62,18 @@ body {
 
 .outer-wrapper > .wrapper {
   padding: 0;
-  background-color: #fff;
+  background: #fff;
   position: relative;
 }
 
 .content-inner-wrapper {
-  margin-top: 252px;
+  margin-top: 300px;
 }
 
 #footer {
   margin: 0 auto;
   padding: 45px 75px;
-  background-color: #fff;
+  background: #fff;
   position: relative;
 }
 </style>

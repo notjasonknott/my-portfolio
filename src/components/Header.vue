@@ -1,15 +1,18 @@
 <template>
-  <div id="header">
+  <header id="header">
     <nav id="main-navigation" class="main-nav">
-    <div id="logo-wrapper">
-        <img alt="Jason logo" src="@/assets/logo.svg">
+    <div v-on:scroll="handleScroll" class="logo-wrapper">
+        <p v-if="scrolled" class="logo-text">JASON KNOTT</p>
+        <img v-else alt="Jason logo" src="@/assets/logo.svg">
     </div>
     <div id="nav-wrapper">
-        <router-link to="/">Home</router-link> |
+      <div class="nav-links">
+        <router-link to="/">Home</router-link>
         <router-link to="/about">About</router-link>
+      </div>
     </div>
     </nav>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -17,13 +20,52 @@ export default {
   name: "Header",
   data() {
     return {
-
+      scrolled: false
     };
+  },
+  methods: {
+    handleScroll() {
+      this.scrolled = window.pageYOffset > 38;
+      let nav = document.querySelector('.logo-wrapper');
+      if(this.scrolled) {
+        nav.classList = 'logo-wrapper small'
+      } else {
+        nav.classList = 'logo-wrapper';
+      }
+    } 
+  },
+  created () {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 };
 </script>
 
 <style lang="scss" scoped>
+
+.logo-wrapper {
+  width: 100%;
+  height: 60px;
+  margin: 40px 0;
+  transition: height .1s ease-in-out;
+
+  &>img {
+    height: 100%;
+    width: auto;
+  }
+}
+
+.logo-text {
+  margin: 0;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.small {
+  height: 10px;
+}
 
 #header {
   position: fixed;
@@ -31,22 +73,42 @@ export default {
   left: auto;
   margin: 0 auto;
   width: 1118px;
-  padding: 40px 0 0;
+  background: #fff;
+  height: auto;
+  padding: 20px 0 0;
   z-index: 1800;
-  background-color: white;
 }
 
-#main-navigation {
+.small {
+  height: 20px;
+  margin: 0px;
+}
+
+.main-nav {
   z-index: 500;
 }
 
 #nav-wrapper {
+  display: flex;
+  justify-content: center;
+  max-height: 8em;
   padding: 30px;
+}
+
+.nav-links {
+  margin-top: auto;
+
+  >* {
+    margin: 1rem 1rem 0 1rem;
+  }
   a {
-    font-weight: bold;
-    color: #2c3e50;
+  font-weight: light;
+  color: #000;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
     &.router-link-exact-active {
-      color: #42b983;
+      color: #a59275;
     }
   }
 }
