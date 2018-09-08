@@ -10,11 +10,9 @@
     </div>
     <div id="nav-wrapper">
       <div class="nav-links">
-        <router-link to="/">Home</router-link>
+        <router-link to="/">Work</router-link>
         <router-link to="/about">About</router-link>
-        <router-link to="/work">Work</router-link>
-        <router-link to="/vlogs">Vlogs</router-link>
-
+        <router-link to="/contact">Contact</router-link>
       </div>
     </div>
     </nav>
@@ -91,14 +89,14 @@ export default {
   display: flex;
   justify-content: center;
   max-height: 8em;
-  padding: 30px;
+  padding: 24px;
 }
 
 .nav-links {
   margin-top: auto;
 
   > * {
-    margin: 1rem 1rem 0 1rem;
+    margin: 1rem 0 0 1rem;
   }
   a {
     font-weight: light;

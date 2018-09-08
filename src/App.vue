@@ -68,7 +68,7 @@ body {
 }
 
 .content-inner-wrapper {
-  margin-top: 300px;
+  margin-top: 320px;
 }
 
 #footer {
